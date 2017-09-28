@@ -166,7 +166,7 @@ for b in sortedBooks
 #  EXCERCISE 2
 
 ###  AppDelegate.swift
-
+```
 import UIKit
 
 class ViewController: UIViewController 
@@ -213,7 +213,8 @@ class ViewController: UIViewController
             return
         }
         let alert = UIAlertController(title: "Greetings ActionSheet", message: "Pick greeting language", preferredStyle: .actionSheet)
-        for (language, value) in greetingsDictionary {
+        for (language, value) in greetingsDictionary 
+        {
             alert.addAction(UIAlertAction(title: NSLocalizedString(language, comment: "Default action"), style: .default, handler: { _ in
                 self.lblGreeting.text = value + " " + self.txtNameField.text!
             }))
@@ -225,11 +226,12 @@ class ViewController: UIViewController
 
     }
 }
+```
 
 #  EXCERCISE 3
 
 ###  HomeViewController.swift
-
+```
 import UIKit
 
 class HomeViewController: UIViewController
@@ -263,10 +265,10 @@ class HomeViewController: UIViewController
 
     @IBOutlet weak var lblName: UILabel!
 }
-
+```
 
 ###  RegisterViewController.swift
-
+```
 import UIKit
 
 protocol RegisterViewControllerDelegate
@@ -341,3 +343,4 @@ class RegisterViewController: UIViewController
         }
     }
 }
+```
