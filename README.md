@@ -47,10 +47,7 @@ else
     "short"
 }
 ```
-##### 10.
-
-Create a library system which contains a list of books. [See below for list of books]
-A Book has three attributes, a 13- Digit ISBN number, a title.
+##### 10. Create a library system which contains a list of books. [See below for list of books] A Book has three attributes, a 13- Digit ISBN number, a title.
 ```
 // LIST OF BOOKS:
 978-0134390734, iOS Programming: The Big Nerd Ranch Guide (5th Edition)
