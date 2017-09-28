@@ -1,9 +1,14 @@
 import UIKit
 
-class ViewController: UIViewController 
+protocol StatsDelegate: class 
 {
-	var numericExpression = ""
-	
+	func resetStats()
+}
+
+class ViewController2: UIViewController 
+{
+	weak var delegate: StatsDelegate?
+
 	/*
 	a.	The number of times addition was performed
 	b.	The number of times subtraction was performed
@@ -16,166 +21,29 @@ class ViewController: UIViewController
 	var numMult = 0
 	var numDiv = 0
 	
-	//	Temporary variables that hold the number of operations in the current expression
-	var numAddInExpression = 0
-	var numSubInExpression = 0
-	var numMultInExpression = 0
-	var numDivInExpression = 0
+	@IBOutlet weak var addLabel: UILabel!
+    @IBOutlet weak var subLabel: UILabel!
+    @IBOutlet weak var multLabel: UILabel!
+    @IBOutlet weak var divLabel: UILabel!
 	
-    @IBOutlet weak var displayLabel: UITextField!
-    
-	override func viewDidLoad()
-    {
-        super.viewDidLoad()
-    }
-
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    func showAlert()
-    {
-        let alert = UIAlertController(title: "Missing Name", message: "Enter your name!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Okay", comment: "Default action"), style: .cancel, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
-
-    @IBAction func btn_0(_ sender: Any)
-    {
-		numericExpression = numericExpression + "0"
-		UpdateDisplay()
-    }
-	@IBAction func btn_1(_ sender: Any)
-    {
-		numericExpression = numericExpression + "1"
-		UpdateDisplay()	
-    }
-	@IBAction func btn_2(_ sender: Any)
-    {
-		numericExpression = numericExpression + "2"
-		UpdateDisplay()
-    }
-	@IBAction func btn_3(_ sender: Any)
-    {
-		numericExpression = numericExpression + "3"
-		UpdateDisplay()
-    }
-	@IBAction func btn_4(_ sender: Any)
-    {
-		numericExpression = numericExpression + "4"
-		UpdateDisplay()
-    }
-	@IBAction func btn_5(_ sender: Any)
-    {
-		numericExpression = numericExpression + "5"
-		UpdateDisplay()
-    }
-	@IBAction func btn_6(_ sender: Any)
-    {
-		numericExpression = numericExpression + "6"
-		UpdateDisplay()
-    }
-	@IBAction func btn_7(_ sender: Any)
-    {
-		numericExpression = numericExpression + "7"
-		UpdateDisplay()
-    }
-	@IBAction func btn_8(_ sender: Any)
-    {
-		numericExpression = numericExpression + "8"
-		UpdateDisplay()
-    }
-	@IBAction func btn_9(_ sender: Any)
-    {
-		numericExpression = numericExpression + "9"
-		UpdateDisplay()
-    }
-	@IBAction func btn_+(_ sender: Any)
-    {
-		numericExpression = numericExpression + "+"
-		numAddInExpression = numAddInExpression + 1
-		UpdateDisplay()
-    }
-	@IBAction func btn_-(_ sender: Any)
-    {
-		numericExpression = numericExpression + "-"
-		numSubInExpression = numSubInExpression + 1
-		UpdateDisplay()
-    }
-	@IBAction func btn_*(_ sender: Any)
-    {
-		numericExpression = numericExpression + "*"
-		numMultInExpression = numMultInExpression + 1
-		UpdateDisplay()
-    }
-	@IBAction func btn_/(_ sender: Any)
-    {
-		numericExpression = numericExpression + "/"
-		numDivInExpression = numDivInExpression + 1
-		UpdateDisplay()
-    }
-	@IBAction func btn_=(_ sender: Any)
-    {
-		let expression = NSExpression(format: numericExpression)
-		var result = expression.expressionValueWithObject(nil, context: nil) as NSNumber
-		print(result)
+	func UpdateStatLabels()
+	{
+		addLabel.text = String(numAdd)
+		subLabel.text = String(numSub)
+		multLabel.text = String(numMult)
+		divLabel.text = String(numDiv)	
+	}
+	
+	@IBAction func ResetStats(_ sender: Any)
+	{
+		numAdd = 0
+		numSub = 0
+		numMult = 0
+		numDiv = 0
 		
-		//	Add the expression operations into the counter
-		numAdd = numAdd + numAddInExpression
-		numSub = numSub + numSubInExpression
-		numMult = numMult + numMultInExpression
-		numDiv = numDiv + numDivInExpression
+		UpdateStatLabels()
 		
-		//	Reset the operations held
-		numAddInExpression = 0
-		numSubInExpression = 0
-		numMultInExpression = 0
-		numDivInExpression = 0
-    }
-	@IBAction func btn_AC(_ sender: Any)
-    {
-		ResetDisplay()
-		UpdateDisplay()
-		
-		//	reset the operation counters
-		numAddInExpression = 0
-		numSubInExpression = 0
-		numMultInExpression = 0
-		numDivInExpression = 0
-    }
-	
-	func UpdateDisplay()
-    {
-        displayLabel.text = numericExpression!
-    }
-	
-	func ResetDisplay()
-    {
-        numericExpression = ""
-    }
-	
-    @IBAction func actionPickAGreeting(_ sender: Any)
-    {
-        guard txtNameField.text!.characters.count > 0 else
-        {
-            showAlert()
-            return
-        }
-        let alert = UIAlertController(title: "Greetings ActionSheet", message: "Pick greeting language", preferredStyle: .actionSheet)
-        for (language, value) in greetingsDictionary 
-        {
-            alert.addAction(UIAlertAction(title: NSLocalizedString(language, comment: "Default action"), style: .default, handler: { _ in
-                self.lblGreeting.text = value + " " + self.txtNameField.text!
-            }))
-        }
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Default action"), style: .cancel, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
-
-    }
+		//	Delegate or w.e. to reset stats in viewController1
+		delegate?.resetStats()
+	}
 }
