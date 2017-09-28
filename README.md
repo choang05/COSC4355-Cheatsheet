@@ -3,33 +3,41 @@ cheatsheet for cosc 4355.
 
 # EXCERCISE 1
 
-// 1. Declare a variable called "string" that holds the value "my string" [0.5]
+1. Declare a variable called "string" that holds the value "my string" [0.5]
+```
 var myString = "my string"
-
-// 2. Print the length of "string" [0.5]
+```
+2. Print the length of "string" [0.5]
+```
 myString.characters.count
-
-// 3. Print the first character in "string" [0.5]
+```
+3. Print the first character in "string" [0.5]
+```
 myString.characters.first
-
-// 4. Print the 4th character in "string" [0.5]
-//string[string.startIndex.advancedBy(3)]
+```
+4. Print the 4th character in "string" [0.5]
+```
+string[string.startIndex.advancedBy(3)]
 myString[myString.index(myString.startIndex, offsetBy: 3)]
-
-// 5. Print the first 3 characters in "string" [1]
-//var idx =
-myString.substring(to: myString.index(myString.startIndex, offsetBy: 3))
-
-// 6. Create an array that contains "a", "b", "c", called "array" [0.5]
+```
+5. Print the first 3 characters in "string" [1]
+```
+var idx = myString.substring(to: myString.index(myString.startIndex, offsetBy: 3))
+```
+6. Create an array that contains "a", "b", "c", called "array" [0.5]
+```
 let array = ["a", "b", "c"]
-
-// 7. Get the length of "array" [0.5]
+```
+7. Get the length of "array" [0.5]
+```
 array.count
-
-// 8. Get the 2nd item in array [0.5]
+```
+8. Get the 2nd item in array [0.5]
+```
 array[1]
-
-// 9. Print "long" if the length of array is more than 5, else print "short" [0.5]
+```
+9. Print "long" if the length of array is more than 5, else print "short" [0.5]
+```
 if array.count > 5
 {
     "long"
@@ -38,14 +46,14 @@ else
 {
     "short"
 }
-
-// 10.
+```
+10.
 
 Create a library system which contains a list of books. [See below for list of books]
 A Book has three attributes, a 13- Digit ISBN number, a title.
 
 // LIST OF BOOKS:
-
+```
 978-0134390734, iOS Programming: The Big Nerd Ranch Guide (5th Edition)
 978-0321942067, Objective-C Programming: The Big Nerd Ranch Guide
 978-0262514279, Seeing: The Computational Approach to Biological Vision
@@ -56,8 +64,10 @@ A Book has three attributes, a 13- Digit ISBN number, a title.
 978-1405191470, Fundamentals of Psycholinguistics
 978-0781760034, Neuroscience: Exploring the Brain
 978-0321644688, Calculus For Biology and Medicine
-
-class Book {
+```
+```
+class Book 
+{
     let isbn: String
     let title: String
     init(id: String, name: String)
@@ -67,7 +77,8 @@ class Book {
     }
 }
 
-class Library {
+class Library 
+{
     var books: [Book]
     init(list : [Book])
     {
@@ -123,32 +134,35 @@ let b10 = Book(id: "978-0321644688", name: "Calculus For Biology and Medicine")
 
 let list = [b1, b2, b3, b4, b5, b6, b7, b8, b9, b10]
 let library = Library(list: list)
+```
 
-
- 11. Call a library function to insert the following book.
- 978-1530274376, Swift: Programming [1]
-
-
+11. Call a library function to insert the following book.
+978-1530274376, Swift: Programming [1]
+```
 library.addBook(book: Book(id: "978-1530274376", name: "Swift: Programming"))
-
-// 12. Call a library function to remove a book. [remove book with ISBN:  978-0321942067] [1]
-
+```
+12. Call a library function to remove a book. [remove book with ISBN:  978-0321942067] [1]
+```
 library.removeBook(isbn: "978-0321942067")
-
-// 13. Call a library function to list all book and the total count of the books [1]
+```
+13. Call a library function to list all book and the total count of the books [1]
+```
 let tuple = library.getBooksAndCount()
 tuple.list
 tuple.total
-
-// 14. Call a library function to list all the books whose name has the word "programming" [1]
+```
+14. Call a library function to list all the books whose name has the word "programming" [1]
+```
 library.getBooksWith(phrase: "programming")
-
-// 15. Sort list of books alphabetically [1]
+```
+15. Sort list of books alphabetically [1]
+```
 let sortedBooks = library.books.sorted(by: {(b1, b2) -> Bool in return b1.title < b2.title })
-for b in sortedBooks {
+for b in sortedBooks 
+{
     print(b.title)
 }
-
+```
 #  EXCERCISE 2
 
 ###  AppDelegate.swift
